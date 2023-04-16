@@ -4,7 +4,10 @@
       h1= @project.title
       = simple_format @project.description
     div
-      = button_to "Close", project_path(@project), params: {status: "closed"}, method: :put, class: "button is-danger", data: { confirm: "Are you sure?" }
+      - if @project.status == "open"
+        = button_to "Close", project_path(@project), params: { project: { status: "closed"} }, method: :put, class: "button is-danger", data: { confirm: "Are you sure?" }
+      - else
+        = button_to "Open", project_path(@project), params: { project: { status: "open"} }, method: :put, class: "button is-success", data: { confirm: "Are you sure?" }
 
 .block
   - @project.comments.each do |comment|
