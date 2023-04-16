@@ -1,0 +1,7 @@
+.box id="#{dom_id project}"
+  .is-flex.is-justify-content-space-between
+    div
+      h2.is-size-4= link_to project.title, project
+      p= project.description
+    div
+      = link_to "Show", project, class: "button is-primary"

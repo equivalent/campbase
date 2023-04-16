@@ -1,0 +1,8 @@
+.field
+  = form.label :description, class: label_class
+  .control
+    = form.text_area :description, class: textarea_class, placeholder: "Add a comment..."
+  - if errors.any?
+    .help.is-danger
+      = errors.join(", ")
+

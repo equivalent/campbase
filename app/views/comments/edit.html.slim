@@ -1,0 +1,13 @@
+h1 Editing comment
+
+== render "form", comment: @comment
+
+br
+
+div
+  => link_to "Back to project", project_path(@comment.project)
+  '|
+  => link_to "Show this comment", [@comment.project, @comment]
+  '|
+  =< link_to "Delete", [@comment.project, @comment], method: :delete, data: { turbo_confirm: "Are you sure?", turbo_method: "delete" }
+

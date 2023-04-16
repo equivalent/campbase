@@ -1,0 +1,14 @@
+.block.content
+  .is-flex.is-justify-content-space-between
+    div
+      h1= @project.title
+      = simple_format @project.description
+    div
+      = button_to "Close", project_path(@project), params: {status: "closed"}, method: :put, class: "button is-danger", data: { confirm: "Are you sure?" }
+
+.block
+  - @project.comments.each do |comment|
+    = render "comments/comment", comment: comment
+
+  = render "comments/form", comment: @project.comments.build
+

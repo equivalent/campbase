@@ -1,0 +1,10 @@
+article.media
+  figure.media-left
+    p.image.is-48x48
+      img[src="https://www.gravatar.com/avatar/c2713a4959692f16d27d2553fb06cc4b.png?r=x&s=128"]
+  .media-content
+    = form_with(model: comment, url: [comment.project, comment]) do |form|
+      = render TextareaComponent.new(form, label: false)
+      .field
+        .control
+          = form.button "Post comment", class: "button is-primary"

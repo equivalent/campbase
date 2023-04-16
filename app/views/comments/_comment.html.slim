@@ -1,0 +1,15 @@
+article.media id="#{dom_id comment}"
+  figure.media-left
+    p.image.is-48x48
+      img src="https://www.gravatar.com/avatar/c2713a4959692f16d27d2553fb06cc4b.png?r=x&s=128"
+  .media-content
+    .content
+      strong
+      = simple_format comment.description
+      small
+        => comment.created_at.strftime("%d %b %Y %H:%M")
+        ' |
+        =< link_to "Edit", edit_project_comment_path(comment.project, comment)
+
+  .media-right
+    = button_to nil, project_comment_path(comment.project, comment), method: :delete, class: "delete", data: { turbo_confirm: "Are you sure?" }
