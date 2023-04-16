@@ -3,4 +3,6 @@ class Project < ApplicationRecord
     open: "open",
     closed: "closed"
   }
+
+  has_many :comments, dependent: :destroy
 end
