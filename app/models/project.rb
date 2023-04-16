@@ -5,4 +5,5 @@ class Project < ApplicationRecord
   }
 
   has_many :comments, dependent: :destroy
+  has_many :entries, dependent: :destroy
 end

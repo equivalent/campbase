@@ -15,3 +15,7 @@
 
   = render "comments/form", comment: @project.comments.build
 
+div aaa
+.block
+  - @project.entries.order(created_at: :desc).each do |entry|
+    = render "entries/entry", entry: entry

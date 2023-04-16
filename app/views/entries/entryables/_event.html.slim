@@ -1,0 +1,11 @@
+article.media id="#{dom_id entry}"
+  figure.media-left
+    p.image.is-48x48
+      img src="https://www.gravatar.com/avatar/c2713a4959692f16d27d2553fb06cc4b.png?r=x&s=128"
+  .media-content
+    .content
+      div
+        strong= entry.entryable.occasion.humanize
+      small
+        => entry.created_at.strftime("%d %b %Y %H:%M")
+
