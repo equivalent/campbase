@@ -9,14 +9,5 @@ section.hero.is-primary
 
       div
         - if current_user
-          article.media
-            figure.media-left
-              p.image.is-64x64
-                = image_tag current_user.image_url
-            .media-content
-              .content
-                p
-                  strong
-                    = current_user.name
-                /= link_to "Login", login_session_path(user)
-                = link_to "Logout", logout_sessions_path
+          = render ProfileComponent.new(current_user) do
+            = link_to "Logout", logout_sessions_path

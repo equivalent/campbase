@@ -1,14 +1,6 @@
 = render 'layouts/flash'
 
 - User.all.each do |user|
-  article.media
-    figure.media-left
-      p.image.is-64x64
-        = image_tag user.image_url
-    .media-content
-      .content
-        p
-          strong
-            = user.name
-        = link_to "Login", login_session_path(user)
+  = render ProfileComponent.new(user) do
+    = link_to "Login", login_session_path(user)
 
