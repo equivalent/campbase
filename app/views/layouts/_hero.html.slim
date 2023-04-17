@@ -3,9 +3,10 @@ section.hero.is-primary
     .is-flex.is-justify-content-space-between
       div
         p.title
-          |  Campbase
+          = link_to "Campbase", projects_path
         p.subtitle
           |  Demo app
+
       div
         - if current_user
           article.media
