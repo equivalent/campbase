@@ -1,4 +1,6 @@
 - if  entry.entryable.is_a?(Comment)
-  = render "comments/comment", comment: entry.entryable
+  = render MediaComponent.new(entry) do
+    = render "comments/comment", comment: entry.entryable
 - else
-  = render "entries/entryables/#{entry.entryable_name}", entry: entry
+  = render MediaComponent.new(entry) do
+    = render "entries/entryables/#{entry.entryable_name}", entry: entry

@@ -1,10 +1,10 @@
-article.media
-  figure.media-left
-    p.image.is-48x48
-      img[src="https://www.gravatar.com/avatar/c2713a4959692f16d27d2553fb06cc4b.png?r=x&s=128"]
-  .media-content
-    = form_with(model: comment, url: url) do |form|
-      = render TextareaComponent.new(form, label: false)
-      .field
+= turbo_frame_tag comment do
+  = form_with(model: comment, url: url) do |form|
+    = render TextareaComponent.new(form, label: false)
+
+    .field.is-grouped
+      .control
+        = form.button class: "button is-primary"
+      - if comment.persisted?
         .control
-          = form.button "Post comment", class: "button is-primary"
+          = link_to "Delete Comment", @comment, class: "button is-danger", method: :delete, data: { turbo_confirm: "Are you sure?", turbo_method: "delete" }

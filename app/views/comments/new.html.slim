@@ -1,6 +1,6 @@
 .block
   = turbo_frame_tag Comment.new do
-    == render "form", comment: @comment, url: project_comments_url(@project, @comment)
+    == render "form", comment: Comment.new, url: project_comments_url(@project, @comment)
 
 div
   = link_to "Back to Project", project_path(@project)

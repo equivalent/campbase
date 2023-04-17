@@ -1,12 +1,12 @@
 .block
   = turbo_frame_tag Comment.new do
-    .notification.is-success
-      = link_to "New comment", new_project_comment_path(@project), class: "delete"
+    .notification.is-success.is-flex.is-justify-content-space-between
+      p.is-size-4 Comment has been created
+      = link_to "New comment", new_project_comment_path(@project), class: "button is-link"
 
-      p.is-size-4 Your comment has been created
 
 .block
-  == render @comment
+  = render "entries/entry", entry: @comment.entry
 
 div
   = link_to "Back to Project", project_path(@project)
