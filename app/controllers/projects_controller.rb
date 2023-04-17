@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        Entry.create!(entryable: Event.new(occasion: "project_#{@project.status}"), project: @project) if status_changed
+        current_user.entries.create!(entryable: Event.new(occasion: "project_#{@project.status}"), project: @project) if status_changed
         # NotifyProjectStatusChangeJob.perform_later(project_id: @project.id, status_change: status_change) if status_changes
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
       else

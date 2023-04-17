@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
-      if @comment.valid? && @project.entries.create(entryable: @comment)
+      if @comment.valid? && current_user.entries.create(entryable: @comment, project: @project)
         format.html { redirect_to created_project_comment_url(@project, @comment), notice: "Comment was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }

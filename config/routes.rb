@@ -6,5 +6,10 @@ Rails.application.routes.draw do
   end
   resources :comments, only: [:show, :edit, :destroy, :update]
 
-  root "projects#index"
+  resources :sessions, only: [:index] do
+    get :login,  on: :member
+    get :logout, on: :collection
+  end
+
+  root "sessions#index"
 end

@@ -4,4 +4,8 @@ class MediaComponent < ViewComponent::Base
   def initialize(model)
     @model = model
   end
+
+  def image_url
+    model.creator.image_url
+  end
 end
