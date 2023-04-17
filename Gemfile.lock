@@ -93,6 +93,7 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    local_time (2.1.0)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -230,6 +231,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  local_time
   pg (~> 1.1)
   propshaft
   puma (~> 5.0)

@@ -3,6 +3,6 @@
     strong
     = simple_format comment.description
     small
-      => comment.created_at.strftime("%d %b %Y %H:%M")
+      => local_time_ago comment.created_at
       ' |
       =< link_to "Edit", edit_comment_path(comment)
