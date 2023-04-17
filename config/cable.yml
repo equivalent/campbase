@@ -7,7 +7,7 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") %>
+  url: <%= ENV["REDIS_URL"] %>
   ssl_params: {
     verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
   }
