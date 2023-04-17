@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
-  belongs_to :project
+  include EntryableConcern
+
   validates :description, presence: true
 end

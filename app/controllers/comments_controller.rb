@@ -1,23 +1,28 @@
 class CommentsController < ApplicationController
-  before_action :set_project
-  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_comment, only: %i[show edit update destroy created]
 
   def show
   end
 
   def new
-    @comment = @project.comments.new
+    @project = Project.find(params[:project_id])
+    @comment = Comment.new
+  end
+
+  def created
+    @project = Project.find(params[:project_id])
   end
 
   def edit
   end
 
   def create
-    @comment = @project.comments.new(comment_params)
+    @project = Project.find(params[:project_id])
+    @comment = Comment.new(comment_params)
 
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to project_comment_url(@comment.project, @comment), notice: "Comment was successfully created." }
+      if @comment.valid? && @project.entries.create(entryable: @comment)
+        format.html { redirect_to created_project_comment_url(@project, @comment), notice: "Comment was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -27,7 +32,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to project_comment_url(@comment.project, @comment), notice: "Comment was successfully updated." }
+        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -44,12 +49,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_project
-    @project = Project.find(params[:project_id])
-  end
 
   def set_comment
-    @comment = @project.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

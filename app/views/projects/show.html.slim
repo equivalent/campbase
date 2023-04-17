@@ -4,18 +4,16 @@
       h1= @project.title
       = simple_format @project.description
     div
-      - if @project.status == "open"
+      - if @project.open?
         = button_to "Close", project_path(@project), params: { project: { status: "closed"} }, method: :put, class: "button is-danger", data: { confirm: "Are you sure?" }
       - else
         = button_to "Open", project_path(@project), params: { project: { status: "open"} }, method: :put, class: "button is-success", data: { confirm: "Are you sure?" }
 
-.block
-  - @project.comments.each do |comment|
-    = render "comments/comment", comment: comment
+= turbo_stream_from "entries"
+#entries.block
 
-  = render "comments/form", comment: @project.comments.build
-
-div aaa
-.block
-  - @project.entries.order(created_at: :desc).each do |entry|
+  - @project.entries.order(created_at: :asc).each do |entry|
     = render "entries/entry", entry: entry
+
+= turbo_frame_tag Comment.new, src: new_project_comment_path(@project) do
+  = link_to "New comment", new_project_comment_path(@project), class: "button is-link"

@@ -9,13 +9,16 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project.assign_attributes(project_params)
+    status_changed = @project.status_changed?
+
     respond_to do |format|
-      if @project.update(project_params)
+      if @project.save
+        Entry.create!(entryable: Event.new(occasion: "project_#{@project.status}"), project: @project) if status_changed
+        # NotifyProjectStatusChangeJob.perform_later(project_id: @project.id, status_change: status_change) if status_changes
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
-        format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end

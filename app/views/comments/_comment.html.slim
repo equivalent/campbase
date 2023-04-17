@@ -9,7 +9,7 @@ article.media id="#{dom_id comment}"
       small
         => comment.created_at.strftime("%d %b %Y %H:%M")
         ' |
-        =< link_to "Edit", edit_project_comment_path(comment.project, comment)
+        =< link_to "Edit", edit_comment_path(comment)
 
   .media-right
-    = button_to nil, project_comment_path(comment.project, comment), method: :delete, class: "delete", data: { turbo_confirm: "Are you sure?" }
+    = button_to nil, comment_path(comment), method: :delete, class: "delete", data: { turbo_confirm: "Are you sure?" }
