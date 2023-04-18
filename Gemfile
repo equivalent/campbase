@@ -72,4 +72,5 @@ group :test do
   gem "webdrivers", "~> 5.2"
   gem "capybara"
   gem "faker"
+  gem "database_cleaner"
 end

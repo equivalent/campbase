@@ -6,7 +6,7 @@ RSpec.describe "General app navigation", type: :system do
   let!(:user) { create(:user, name: "John") }
   let!(:project) do
     create(:project, title: "Test Project").tap do |project|
-      create(:entry, entryable: create(:event, occasion: "project_closed"), creator: user, project: project)
+      create(:entry, entryable: create(:event, occasion: "project_closed"), project: project)
     end
   end
 
