@@ -1,4 +1,3 @@
-
 User.find_or_create_by!(name: "Vomas Talent").tap do |user|
   user.image_url = "https://www.gravatar.com/avatar/c2713a4959692f16d27d2553fb06cc4b.png?r=x&s=128"
   user.save!
@@ -21,5 +20,4 @@ Project.find_or_create_by!(title: "Project with conversation").tap do |project|
 
   project.entries.create!(entryable: Comment.create!(description: "lorem ipsum dolor sit amet"), creator: User.last)
   project.entries.create!(entryable: Event.create!(occasion: "project_opened"), creator: User.last)
-
 end

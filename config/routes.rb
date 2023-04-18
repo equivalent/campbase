@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:show, :edit, :destroy, :update]
 
   resources :sessions, only: [:index] do
-    get :login,  on: :member
+    get :login, on: :member
     get :logout, on: :collection
   end
 
